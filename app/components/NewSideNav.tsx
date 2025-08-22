@@ -142,7 +142,7 @@ const Sidebar = () => {
                       <a href="/lbo/mynetwork/generationtree" className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group text-white hover:bg-gray-300 hover:text-gray-900">Generation Tree</a>
                     </li>
                     <li>
-                      <a href="#" className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group text-white hover:bg-gray-300 hover:text-gray-900">My Direct</a>
+                      <a href="/lbo/mynetwork/mydirect" className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group text-white hover:bg-gray-300 hover:text-gray-900">My Direct</a>
                     </li>
                     <li>
                       <a href="#" className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group text-white hover:bg-gray-300 hover:text-gray-900">My Downline</a>

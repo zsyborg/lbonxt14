@@ -965,3 +965,64 @@ background: linear-gradient(to left, #E9E4F0, #b0ebb8); /* W3C, IE 10+/ Edge, Fi
   left: 22%;
   background-color: #271942;
 }
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+}
+
+.show {
+  opacity: 1;
+}
+
+.modal-content {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(0.5);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal-overlay.show .modal-content {
+  transform: scale(1);
+}
+
+.ulgeno {
+  width: 100%;
+  border-bottom: 1px solid #5c415f;
+}
+.ulgeno li{
+  display: flex;
+}
+
+.liflex ul li{
+  
+  display: flex;
+}
+
+.genolbl {
+    width: 50%;
+    font-weight: 700;
+}
+
+.lipopCont {
+    float: left;
+    /* border: 3px solid #ddd; */
+    padding: 5px;
+    font-size: 0.8em;
+    margin-bottom: 5px;
+}

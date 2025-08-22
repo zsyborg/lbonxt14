@@ -108,6 +108,8 @@ bintree: any }) => {
 
 
   const binaryTree = async () => {
+     console.log(member?.MPD_MemId);
+       
   }
  
   
