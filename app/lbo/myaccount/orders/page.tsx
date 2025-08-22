@@ -3,8 +3,6 @@ import Image from "next/image";
 import Sidebar from "@/app/components/NewSideNav";
 import { useState, useEffect } from "react";
 import LBOInfo from "@/app/components/lbo/LBOInfo";
-// import { Card, Button,  } from "flowbite-react";
-// import {Dialog} from 'primereact/dialog';
 import { PiShoppingCartFill } from "react-icons/pi";
 
 export default function Orders() {

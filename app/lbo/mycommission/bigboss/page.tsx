@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Sidebar from "@/app/components/NewSideNav";
 import { useState, useEffect } from "react";
-// import 'primereact/resources/themes/fluent-light/theme.css';
 
 
 
