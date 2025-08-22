@@ -1,8 +1,6 @@
 'use client';
-import Image from "next/image";
 import Sidebar from "@/app/components/NewSideNav";
 import { useState, useEffect } from "react";
-import LBOInfo from "@/app/components/lbo/LBOInfo";
 import { FaUserLarge } from "react-icons/fa6";
 
 
