@@ -3,8 +3,8 @@ import Image from "next/image";
 import Sidebar from "@/app/components/NewSideNav";
 import { useState, useEffect } from "react";
 import LBOInfo from "@/app/components/lbo/LBOInfo";
-import { Card, Button,  } from "flowbite-react";
-import {Dialog} from 'primereact/dialog';
+// import { Card, Button,  } from "flowbite-react";
+// import {Dialog} from 'primereact/dialog';
 import { PiShoppingCartFill } from "react-icons/pi";
 
 export default function Orders() {
@@ -27,7 +27,7 @@ const [visible, setVisible] = useState(false)
                 </h3>
                 <br/>
                 <br/>
-              <Card className="w-1/4 ml-4">
+              {/* <Card className="w-1/4 ml-4">
               <h5 className="text-2xl font-bold tracking-tight text-blue-900">
                     Order #75
                 </h5>
@@ -52,7 +52,7 @@ const [visible, setVisible] = useState(false)
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
                 </Dialog>
-              </Card>
+              </Card> */}
           </div>
             
         </div>
