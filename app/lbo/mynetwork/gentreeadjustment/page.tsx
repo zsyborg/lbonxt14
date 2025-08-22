@@ -5,8 +5,6 @@ import { useState, useEffect } from "react";
 import LBOInfo from "@/app/components/lbo/LBOInfo";
 import 'primereact/resources/themes/fluent-light/theme.css';
 import { FaUserLarge } from "react-icons/fa6";
-import {PrimeReactProvider} from 'primereact/api';
-import { OrganizationChart } from 'primereact/organizationchart';
 
 
 
@@ -97,7 +95,6 @@ export default function GenTreeAdj() {
 
               <h3 className='fontlight w-full bg-indigo-900 text-white text-2xl py-4 pl-8'>Generation Tree Adjustment</h3>
             
-              <OrganizationChart value={data} nodeTemplate={nodeTemplate} />
 
         </div>
         </div>
