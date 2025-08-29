@@ -26,6 +26,10 @@ bintree: any }) => {
   const [rightCount, setRightCount] = useState(0);
   const [iddownline, setIddownline] = useState<any>([]);
   const [bintree, setBinaryTree] = useState<any>([]);
+  const [day, setDay] = useState('');
+  const [month, setMonth] = useState('');
+  const [year, setYear] = useState('');
+
    useEffect(() => {
     const fetchData = async () => {
         setLoading(true);
@@ -34,6 +38,16 @@ bintree: any }) => {
         const memberResponse = await fetch('http://localhost:3001/v1/members/667400S');
         const memberData = await memberResponse.json();
         setMember(memberData[0]);
+        const dob = memberData[0].DateOfBirth;
+          const newdob = new Date(dob);
+          const day = newdob.getDate();
+          const month = newdob.getMonth() + 1; // Months are 0-based
+          const year = newdob.getFullYear();
+          // console.log(memberData[0].MPD_DOB);
+
+          setDay(day.toString());
+          setMonth(month.toString());
+          setYear(year.toString());
         // console.log("Member Data:", memberData[0]);
 
         const walletResponse = await fetch('http://localhost:3001/v1/ewalletbalance', {
@@ -60,14 +74,14 @@ bintree: any }) => {
               const data = {"memno": String(memberData[0].MJD_MemNo)}
               axios.post(url, data)
               .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 // Assign response data to iddownline variable
                 setIddownline(response.data);
                 setDownline(response.data);
                 setLeftCount(iddownline.filter((item: any) => item.IDD_LR === 1).length);
                 setRightCount(iddownline.filter((item: any) => item.IDD_LR === 2).length);
                 // console.log(iddownline);
-                console.log("It works");
+                // console.log("It works");
               })
               .catch((error) => {
                 console.error(error);

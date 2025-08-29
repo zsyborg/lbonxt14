@@ -934,10 +934,10 @@ background: linear-gradient(to left, #E9E4F0, #b0ebb8); /* W3C, IE 10+/ Edge, Fi
 
 input{
   height: 30px;
-  background-color: white;
-  border-radius: 1em;
+  background-color: rgb(231, 231, 231);
+  /* border-radius: 1em; */
   padding-left: 8px;
-  border: 1px solid #bebebe;
+  /* border: 1px solid #bebebe; */
 }
 
 select{

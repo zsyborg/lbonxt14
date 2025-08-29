@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 // import { FileInput, HelperText, Label, TextInput, Dropdown, select, Radio, Button, Card } from "flowbite-react";
-import {Button, TextField, Input, select, MenuItem, InputLabel, FormControl} from '@mui/material';
+import {Button, TextField, Input, Select, MenuItem, InputLabel, FormControl} from '@mui/material';
 
 import axios from 'axios';
 import countries from '@/app/components/data/countries.json';
@@ -18,6 +18,11 @@ function LBOInfo() {
     const [day, setDay] = useState('');
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('');
+
+    // const [nomDay, setNomDay] = useState('');
+    // const [nomMonth, setNomMonth] = useState('');
+    // const [nomYear, setNomYear] = useState('');
+
     const [countryCode, setCountryCode] = useState('');
     const [visible, setVisible] = useState(false)
     const { member, wallet, loading } = useMember();
@@ -67,26 +72,45 @@ function LBOInfo() {
   };
 
 
-useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('http://localhost:3001/v1/scrap');
-            const dob = response.data[0].DateOfBirth;
-            const newdob = new Date(dob);
-            const day = newdob.getDate();
-            const month = newdob.getMonth() + 1; // Months are 0-based
-            const year = newdob.getFullYear();
-            console.log(year);
+// useEffect(() => {
+//     const fetchData = async () => {
+//         try {
+//             const response = await axios.get('http://localhost:3001/v1/scrap');
+//             const dob = response.data[0].DateOfBirth;
+//             const newdob = new Date(dob);
+//             const day = newdob.getDate();
+//             const month = newdob.getMonth() + 1; // Months are 0-based
+//             const year = newdob.getFullYear();
+//             console.log(day + month + year);
 
-            setDay(day.toString());
-            setMonth(month.toString());
-            setYear(year.toString());
-        } catch (error) {
-            console.error(error);
-        }
-    };
-    fetchData();
-}, []);
+//             setDay(day.toString());
+//             setMonth(month.toString());
+//             setYear(year.toString());
+//         } catch (error) {
+//             console.error(error);
+//         }
+//     };
+//     fetchData();
+// }, []);
+
+// Birth Dates
+    // if (!member) return;
+    const dob = member?.MPD_DOB;
+    const newdob = new Date(dob);
+    const dayed = newdob.getDate();
+    const monthdat = newdob.getMonth() + 1; // Months are 0-based
+    const yeardat = newdob.getFullYear();
+    // setDay(dayed.toString());
+    // setMonth(monthdat.toString());
+    // setYear(yeardat);
+    console.log(member?.MPD_Country);
+
+    const nomdob = member?.MPD_nomBdate;
+    const newnomdob = new Date(nomdob);
+    const nomdayed = newnomdob.getDate();
+    const nommonth = newnomdob.getMonth() + 1;
+    const nomyear = newnomdob.getFullYear();
+
 
 
           type FormDataState = {
@@ -165,39 +189,41 @@ useEffect(() => {
                                 <div className='grid grid-cols-3'>
                                     
                                       {/* <InputLabel id="demo-simple-select-helper-label">Day</InputLabel> */}
-                                        <select id="demo-simple-select-helper" value={day} onChange={handleChangeDay}>
+                                        <select id="demo-simple-select-helper" value={dayed} onChange={handleChangeDay}>
                                             {days.map((m, i) =>(
-                                                <option key={m} value={i + 1}>{m}</option>
+                                                <option key={m} value={i + 1} selected={dayed}>{m}</option>
                                             ))}
                                         </select>
                                     
                                     
                                       {/* <InputLabel id="month">Month</InputLabel> */}
-                                        <select id='monthsel' value={month} onChange={handleChangeMonth}>
+                                        <select id='monthsel' value={monthdat} onChange={handleChangeMonth}>
                                             {months.map((m, i) =>(
-                                                <option key={m} value={i + 1}>{m}</option>
+                                                <option key={m} value={i + 1} selected={month}>{m}</option>
                                             ))}
                                         </select>
                                     
                                     
                                       {/* <InputLabel id="year">Year</InputLabel> */}
-                                        <select id='yearsel' value={year} onChange={handleChangeYear}>
+                                        <select id='yearsel' value={yeardat} onChange={handleChangeYear}>
                                             {years.map((m, i) =>(
-                                                <option key={m} value={i + 1}>{m}</option>
+                                                <option key={m} value={m} selected={yeardat}>{m}</option>
                                             ))}
                                         </select>
                                     
                                 </div>
                                 <br/>
                                 {/* <p className='font-bold'>Email</p> */}
-                                    <TextField className='mb-6' type='email' label='Email' defaultValue={member?.MPD_Email} onChange={handleInputChange}/>
+                                    <TextField className='mb-6' type='email' label='Email' defaultValue={member?.MPD_Email} onChange={handleInputChange}
+                                    InputLabelProps={{ shrink: true }} inputMode='email'/>
                                     <br/>
                                     <div className='grid grid-cols-2'>
-
-                                <select className='w-40'>
+                                
+                                <p>Phone</p><br/>
+                                <select className='w-40' value={member?.MPD_Country}>
                                     {countries.map((country) => (
-                                        <option key={country.code} value={country.dial_code}>
-                                            {country.dial_code} ({country.name})
+                                        <option key={country.name} value={country.name} selected={member?.MPD_Country}>
+                                            {country.dial_code} - {country.name}
                                         </option>
                                     ))}
                                 </select>
@@ -207,11 +233,11 @@ useEffect(() => {
                                     <p className='font-bold'>Withdrawal Options</p>
                                     <div className='grid grid-cols-2'>
                                         <div>
-                                            <input type='radio' name='manual' value="manual" />
+                                            <input type='radio' name='withdrawal' value="0" checked={member?.MPD_AutoORmanualWithdrawal === 0} />
                                             <label htmlFor="withdrawal">Manual</label>
                                         </div>
                                         <div>
-                                            <input type='radio' name='auto' value="auto" />
+                                            <input type='radio' name='withdrawal' value="1" checked={member?.MPD_AutoORmanualWithdrawal === 1}/>
                                             <label htmlFor="withdrawal">Auto</label>
                                         </div>
                                     </div>
@@ -231,24 +257,24 @@ useEffect(() => {
                             <br/>
                             <p className='font-bold'>Nominee Date Of Birth</p>
                                 <div className='grid grid-cols-3'>
-                                    <select value={day}>
+                                    <select value={nomdayed}>
                                         {days.map((m, i) =>(
                                             <option key={m} value={i + 1}>{m}</option>
                                         ))}
                                     </select>
-                                    <select value={month}>
+                                    <select value={nommonth}>
                                         {months.map((m, i) =>(
                                             <option key={m} value={i + 1}>{m}</option>
                                         ))}
                                     </select>
-                                    <select value={year}>
+                                    <select value={nomyear}>
                                         {years.map((m, i) =>(
-                                            <option key={m} value={i + 1}>{m}</option>
+                                            <option key={m} value={m} selected={nomyear}>{m}</option>
                                         ))}
                                     </select>
                                 </div>
                             <p className='font-bold'>Nominee Relation</p>
-                            <select>
+                            <select value={member?.MPD_nomRel}>
                                 <option value="Father">Father</option>
                                 <option value="Mother">Mother</option>
                                 <option value="Brother">Brother</option>
@@ -279,9 +305,9 @@ useEffect(() => {
                             <p>City: {member?.MPD_City || 'NA'}</p><br/>
                             <p>State: {member?.MPD_State || 'NA'}</p><br/><br/>
                             <p className='font-bold'>Change Password</p>
-                            <input type='password' placeholder='Old Password'/><br/>
-                            <input type='password' placeholder='New Password'/><br/>
-                            <input type='password' placeholder='Confirm Password'/>
+                            <input className='mb-4' type='password' placeholder='Old Password'/><br/>
+                            <input className='mb-4' type='password' placeholder='New Password'/><br/>
+                            <input className='mb-4' type='password' placeholder='Confirm Password'/>
                         </div>
                 </div>
                         </form>
