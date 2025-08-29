@@ -1,11 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { Accordion, AccordionContent, AccordionPanel, AccordionTitle, AccordionPanelProps } from "flowbite-react";
-import { TabItem, Tabs } from "flowbite-react";
-import { HiAdjustments, HiClipboardList, HiUserCircle } from "react-icons/hi";
-import { MdDashboard } from "react-icons/md";
-import DataTable from 'react-data-table-component';
-import {Chart} from 'primereact/chart';
 
 const columns = [
 	{
@@ -241,7 +234,7 @@ function LBOStats() {
     
   <div className="">
     <h2 className="pl-8 h-fit bg-amber-600 my-12 text-white">LBO Section</h2>
-
+{/* 
     <Accordion className=''>
       <AccordionPanel alwaysOpen>
         <AccordionTitle>My Downline</AccordionTitle>
@@ -323,7 +316,7 @@ function LBOStats() {
 
 
           </TabItem>
-
+ */}
 
 {/* **************** */}
 {/* **************** */}
@@ -332,7 +325,7 @@ function LBOStats() {
 {/* **************** */}
 
 
-
+{/* 
           <TabItem title="CV" >
           <div className='flex'>
                 <div className='basis-1/2'>
@@ -414,7 +407,7 @@ function LBOStats() {
                 </div>
              </div>
 
-          </TabItem>
+          </TabItem> */}
 
 {/* **************** */}
 {/* **************** */}
@@ -424,7 +417,7 @@ function LBOStats() {
 
 
 
-        <TabItem title="SV" >
+        {/* <TabItem title="SV" >
           <div className='flex'>
                 <div className='basis-1/2'>
                 <DataTable
@@ -506,14 +499,14 @@ function LBOStats() {
              </div>
 
           </TabItem>
-         
+          */}
 {/* **************** */}
 {/* **************** */}
 {/* Sale */}
 {/* **************** */}
 {/* **************** */}
          
-       
+{/*        
 
           <TabItem title="Sale" >
           <div className='flex'>
@@ -692,7 +685,7 @@ function LBOStats() {
 
 
 
-          <TabItem title="CV" >
+          {/* <TabItem title="CV" >
           <div className='flex'>
                 <div className='basis-1/2'>
                   <DataTable
@@ -767,7 +760,7 @@ function LBOStats() {
                 </div>
              </div>
 
-          </TabItem>
+          </TabItem> */}
 
 {/* **************** */}
 {/* **************** */}
@@ -777,7 +770,7 @@ function LBOStats() {
 
 
 
-        <TabItem title="SV" >
+        {/* <TabItem title="SV" >
           <div className='flex'>
                 <div className='basis-1/2'>
                 <DataTable
@@ -851,7 +844,7 @@ function LBOStats() {
                 </div>
              </div>
 
-          </TabItem>
+          </TabItem> */}
          
 {/* **************** */}
 {/* **************** */}
@@ -861,7 +854,7 @@ function LBOStats() {
          
        
 
-          <TabItem title="Sale" >
+          {/* <TabItem title="Sale" >
           <div className='flex'>
                 <div className='basis-1/2'>
                 <DataTable
@@ -1035,8 +1028,8 @@ function LBOStats() {
              </div>
           </AccordionContent>
         </AccordionPanel>
-    </Accordion>
-                
+    </Accordion> */}
+                 
 
               </div> {/* Container End */}
     </>

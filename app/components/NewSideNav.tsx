@@ -59,7 +59,7 @@ const Sidebar = () => {
       <div className={collapsed ? 'collapsed': 'sidebar'}>
         <div className='sidebarHeader'>
           {!collapsed && <div><img src="/logo.png" className='w-15 h-15 rounded-full inline' alt='Lifeis Speed Logo'/>
-                  <p className='text-white inline'>Lifeis Speed Pvt. Ltd.</p>
+                 <br/> <p className='text-white inline'>Lifeis Speed Pvt. Ltd.</p>
                   </div>
                 //   <span className='logo'>Dashboard</span>
                   }
@@ -86,6 +86,7 @@ const Sidebar = () => {
                 <LuMenu onClick={navText} className='text-white text-3xl text-center pl-2 pb-2'/>
               </li> */}
         
+        <input type='text' placeholder='Search' className='w-full mb-6' />
                 
                 <li>
                   <a href="/lbo/dashboard" className="flex items-center p-2 text-base font-normal text-white hover:bg-gray-300 hover:text-gray-900 group">
@@ -145,7 +146,7 @@ const Sidebar = () => {
                       <a href="/lbo/mynetwork/mydirect" className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group text-white hover:bg-gray-300 hover:text-gray-900">My Direct</a>
                     </li>
                     <li>
-                      <a href="#" className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group text-white hover:bg-gray-300 hover:text-gray-900">My Downline</a>
+                      <a href="/lbo/mynetwork/mydownline" className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group text-white hover:bg-gray-300 hover:text-gray-900">My Downline</a>
                     </li>
                     <li>
                       <a href="" className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group text-white hover:bg-gray-300 hover:text-gray-900">Generation Downline</a>

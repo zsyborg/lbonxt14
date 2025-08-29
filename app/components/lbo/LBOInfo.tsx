@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-// import { FileInput, HelperText, Label, TextInput, Dropdown, Select, Radio, Button, Card } from "flowbite-react";
+// import { FileInput, HelperText, Label, TextInput, Dropdown, select, Radio, Button, Card } from "flowbite-react";
+import {Button, TextField, Input, select, MenuItem, InputLabel, FormControl} from '@mui/material';
+
 import axios from 'axios';
 import countries from '@/app/components/data/countries.json';
 import { LuSave } from 'react-icons/lu';
@@ -52,28 +54,39 @@ function LBOInfo() {
     //     setYear(e.target.value);
     //   };
 
+ const handleChangeDay = (event: selectChangeEvent) => {
+    setDay(event.target.value);
+  };
+
+  const handleChangeMonth = (event: selectChangeEvent) => {
+    setMonth(event.target.value);
+  };
+
+  const handleChangeYear = (event: selectChangeEvent) => {
+    setYear(event.target.value);
+  };
 
 
-          useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    const response = await axios.get('http://localhost:3001/v1/scrap');
-                    const dob = response.data[0].DateOfBirth;
-                    const newdob = new Date(dob);
-                    const day = newdob.getDate();
-                    const month = newdob.getMonth() + 1; // Months are 0-based
-                    const year = newdob.getFullYear();
-                    console.log(year);
+useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/v1/scrap');
+            const dob = response.data[0].DateOfBirth;
+            const newdob = new Date(dob);
+            const day = newdob.getDate();
+            const month = newdob.getMonth() + 1; // Months are 0-based
+            const year = newdob.getFullYear();
+            console.log(year);
 
-                    setDay(day.toString());
-                    setMonth(month.toString());
-                    setYear(year.toString());
-                } catch (error) {
-                  console.error(error);
-                }
-              };
-              fetchData();
-          }, []);
+            setDay(day.toString());
+            setMonth(month.toString());
+            setYear(year.toString());
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    fetchData();
+}, []);
 
 
           type FormDataState = {
@@ -129,11 +142,11 @@ function LBOInfo() {
   return (
     <>
     
-        <div className="w-full">
+    <div className="w-full">
 
-                    <h3 className='fontlight bg-indigo-900 text-white text-2xl py-4 pl-8'>Your Personal Details</h3>
-                    <form onSubmit={handleSubmit}>
-                <div className='grid grid-cols-4 gap-8 py-4 pl-8'>
+        <h3 className='fontlight bg-indigo-900 text-white text-2xl py-4 pl-8'>Your Personal Details</h3>
+            <form onSubmit={handleSubmit}>
+                <div className='grid grid-cols-3 gap-8 py-4 pl-8'>
                     <div>
                         <p>Profile Picture</p>
                         <img src="/logo.png"width={80} alt='Profile Picture' />
@@ -150,25 +163,34 @@ function LBOInfo() {
                             <div>
                                 <p className='font-bold'>Date Of Birth</p>
                                 <div className='grid grid-cols-3'>
-                                    <select value={day}>
-                                        {days.map((m, i) =>(
-                                            <option key={m} value={i + 1}>{m}</option>
-                                        ))}
-                                    </select>
-                                    <select value={month}>
-                                        {months.map((m, i) =>(
-                                            <option key={m} value={i + 1}>{m}</option>
-                                        ))}
-                                    </select>
-                                    <select value={year}>
-                                        {years.map((m, i) =>(
-                                            <option key={m} value={i + 1}>{m}</option>
-                                        ))}
-                                    </select>
+                                    
+                                      {/* <InputLabel id="demo-simple-select-helper-label">Day</InputLabel> */}
+                                        <select id="demo-simple-select-helper" value={day} onChange={handleChangeDay}>
+                                            {days.map((m, i) =>(
+                                                <option key={m} value={i + 1}>{m}</option>
+                                            ))}
+                                        </select>
+                                    
+                                    
+                                      {/* <InputLabel id="month">Month</InputLabel> */}
+                                        <select id='monthsel' value={month} onChange={handleChangeMonth}>
+                                            {months.map((m, i) =>(
+                                                <option key={m} value={i + 1}>{m}</option>
+                                            ))}
+                                        </select>
+                                    
+                                    
+                                      {/* <InputLabel id="year">Year</InputLabel> */}
+                                        <select id='yearsel' value={year} onChange={handleChangeYear}>
+                                            {years.map((m, i) =>(
+                                                <option key={m} value={i + 1}>{m}</option>
+                                            ))}
+                                        </select>
+                                    
                                 </div>
                                 <br/>
-                                <p className='font-bold'>Email</p>
-                                    <input  type='email' placeholder='Email' value={member?.MPD_Email} onChange={handleInputChange}/>
+                                {/* <p className='font-bold'>Email</p> */}
+                                    <TextField className='mb-6' type='email' label='Email' defaultValue={member?.MPD_Email} onChange={handleInputChange}/>
                                     <br/>
                                     <div className='grid grid-cols-2'>
 
@@ -194,8 +216,6 @@ function LBOInfo() {
                                         </div>
                                     </div>
                             </div>
-
-
                         </div>
 
                     </div>
@@ -245,8 +265,10 @@ function LBOInfo() {
                                 <option value="Aunt">Aunt</option>
                             </select>
                             <div className='grid grid-cols-2 gap-8'>
-                                <button type='submit' disabled={uploading} pill color='green' className='text-white mt-8'><LuSave className='mr-2'/> {uploading ? 'Saving...' : 'Save'}</but>
-                                <button pill color='blue' className='text-white mt-8'><FaPrint className='mr-2'/>Preview</button>
+                                <Button variant="contained">Save</Button>
+                                
+                                <button type='submit' disabled={uploading} color='green' className='text-white mt-8'><LuSave className='mr-2'/> {uploading ? 'Saving...' : 'Save'}</button>
+                                <button color='blue' className='text-white mt-8'><FaPrint className='mr-2'/>Preview</button>
                             </div>
                         </div>
                         <div>

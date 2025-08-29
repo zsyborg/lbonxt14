@@ -16,20 +16,23 @@ export default function Login() {
     
     const [visible, setVisible] = useState(false)
     const [binary, setBinary] = useState([]);
-    const {binaryTree, member, wallet} = useMember();
-    const [selectedMember, setselectedMember] = useState(null);
+    const {member} = useMember();
+    const [selectedMember, setselectedMember] = useState<any>(null);
     const [isOpen, setIsOpen] = useState(false);
+
+    console.log('Initial isOpen state:', isOpen);
 
     const handleOpen = (user:any) => {
         setselectedMember(user);
         setIsOpen(true);
         document.body.classList.add('modal-open');
+        console.log('handleOpen called');
     };
 
     const handleClose = () => {
         setIsOpen(false);
         document.body.classList.remove('modal-open');
-        
+        console.log('handleClose called');
     };
 
     useEffect(() => {
@@ -38,13 +41,13 @@ export default function Login() {
                 handleClose();
             }
         }
-        document.addEventListener('keydown', handleKeyDown);
+            document.addEventListener('keydown', handleKeyDown);
         
         return () => {
-        document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keydown', handleKeyDown);
         };
         
-    }, [isOpen])
+    }, [])
     
 // console.log("Member Context:", member?.MPD_MemId);
 
@@ -120,8 +123,8 @@ export default function Login() {
 
     const getPackageImage = (packageName?: string) => {
         if (!packageName) return "/images/binary/og/available.png";
-        if (packageName.toLowerCase().includes("half")) return "/images/binary/og/half.png";
-        if (packageName.toLowerCase().includes("full")) return "/images/binary/og/full.png";
+        if (packageName.toLowerCase().includes("half")) return "/images/binary/orange.png";
+        if (packageName.toLowerCase().includes("full")) return "/images/binary/blue.png";
         return "/images/binary/og/available.png";
     };
 
@@ -248,7 +251,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
           <div className="grow flex flex-col">
               <h3 className='fontlight w-full bg-indigo-900 text-white text-2xl py-4 pl-8 pr-8'>Binary Tree</h3>
 
-                <div className="w-full text-center justify-items-center items-center">
+                <div className="w-full text-center justify-items-center items-center hidden">
                         
                         {level0 ? (
                             <div className="text-center items-center justify-items-center level0">
@@ -277,106 +280,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                                 <img src={getPackageImage(level1Left.PackageName)} style={{width:"50px"}} />
                                
                                <a href="#" onClick={() => handleOpen(level1Left)}>View Details</a>
-                                <Modal isOpen={isOpen} onClose={handleClose}>
-                                    <div className="w-[580px] flex">
-{selectedMember ? (
-
-    <ul className="ulgeno mb-10">
-        <li className="liflex">
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">ID</li>
-            <li className="lipopCont genoval">
-                {
-                    selectedMember.MemNo
-                }
-            </li>
-            </ul>
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Paid Date</li>
-            <li className="lipopCont genoval">{selectedMember.DOJ_DDMMYYYY}</li>
-            </ul>
-        </li>
-        <li className="liflex">
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl w-25">Name</li>
-            <li className="lipopCont genoval w-75">{selectedMember.MemName}</li>
-            </ul>
-            <ul className="ulgeno">
-            </ul>
-        </li>
-        <li className="liflex">
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Sponsor Name</li>
-            <li className="lipopCont genoval">{selectedMember.SponsorName}</li>
-            </ul>
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Adjusted ID</li>
-            <li className="lipopCont genoval">{selectedMember.AdjustedToId}</li>
-            </ul>
-        </li>
-        <li className="liflex">
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Left Count</li>
-            <li className="lipopCont genoval">{selectedMember.LeftCount} </li>
-            </ul>
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Right Count</li>
-            <li className="lipopCont genoval"> {selectedMember.RightCount}</li>
-            </ul>
-        </li>
-        <li className="liflex">
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Confirm Left</li>
-            <li className="lipopCont genoval"> {selectedMember.ConfirmLeftCount} </li>
-            </ul>
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Confirm Right</li>
-            <li className="lipopCont genoval"> {selectedMember.ConfirmRightCount} </li>
-            </ul>
-        </li>
-        <li className="liflex">
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Left SV</li>
-            <li className="lipopCont genoval"> {selectedMember.LeftBV} </li>
-            </ul>
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Right SV</li>
-            <li className="lipopCont genoval"> {selectedMember.RightBV} </li>
-            </ul>
-        </li>
-        <li className="liflex">
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Left CV</li>
-            <li className="lipopCont genoval"> {selectedMember.LeftPV} </li>
-            </ul>
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Right CV</li>
-            <li className="lipopCont genoval"> {selectedMember.RightPV} </li>
-            </ul>
-        </li>
-        <li className="liflex">
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Award Qualification</li>
-            <li className="lipopCont genoval">
-                {
-                    selectedMember.AwardName ? selectedMember.AwardName : '-'
-                }
-            </li>
-            </ul>
-        </li>
-        {/* <li className="liflex">
-            <ul className="ulgeno">
-            <li className="lipopCont genolbl">Upgrade Package</li>
-            <li className="lipopCont genoval">-</li>
-            </ul>
-        </li> */}
-        </ul>
-) : (
-    <p>Loading...</p>
-    )}
-                                    </div>
-
-                                </Modal>
+                                
                                 <p>|</p>
                             </div>
 
@@ -551,7 +455,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                                         <h4 className={styles.myh4}>{lvl3secondleft[0].MemNo}</h4>
                                         <h4 className={styles.myh4}>{lvl3secondleft[0].DOJ_DDMMYYYY}</h4>
                                         <h4 className={styles.myh4}>{lvl3secondleft[0].MemName}</h4>
-                                        <img src={getPackageImage(lvl3secondleft[0].PackageName)} style={{width:"50px"}} />
+                                        <img className="mx-auto" src={getPackageImage(lvl3secondleft[0].PackageName)} style={{width:"50px"}} />
                                         {lvl3secondleft[0].MemName ? (
                                             <a href="#" onClick={() => handleOpen(lvl3secondleft[0])}>View Details</a>
 
@@ -570,7 +474,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                                         <h4 className={styles.myh4}>{lvl3secondright[0].MemNo}</h4>
                                         <h4 className={styles.myh4}>{lvl3secondright[0].DOJ_DDMMYYYY}</h4>
                                         <h4 className={styles.myh4}>{lvl3secondright[0].MemName}</h4>
-                                        <img src={getPackageImage(lvl3secondright[0].PackageName)} style={{width:"50px"}} />
+                                        <img className="mx-auto" src={getPackageImage(lvl3secondright[0].PackageName)} style={{width:"50px"}} />
                                         {lvl3secondright[0].MemName ? (
                                             <a href="#" onClick={() => handleOpen(lvl3secondright[0])}>View Details</a>
 
@@ -593,7 +497,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                                         <h4 className={styles.myh4}>{lvl3thirdleft[0].MemNo}</h4>
                                         <h4 className={styles.myh4}>{lvl3thirdleft[0].DOJ_DDMMYYYY}</h4>
                                         <h4 className={styles.myh4}>{lvl3thirdleft[0].MemName}</h4>
-                                        <img src={getPackageImage(lvl3thirdleft[0].PackageName)} style={{width:"50px"}} />
+                                        <img className="mx-auto" src={getPackageImage(lvl3thirdleft[0].PackageName)} style={{width:"50px"}} />
                                         {lvl3thirdleft[0].MemName ? (
                                             <a href="#" onClick={() => handleOpen(lvl3thirdleft[0])}>View Details</a>
 
@@ -612,7 +516,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                                         <h4 className={styles.myh4}>{lvl3thirdright[0].MemNo}</h4>
                                         <h4 className={styles.myh4}>{lvl3thirdright[0].DOJ_DDMMYYYY}</h4>
                                         <h4 className={styles.myh4}>{lvl3thirdright[0].MemName}</h4>
-                                        <img src={getPackageImage(lvl3thirdright[0].PackageName)} style={{width:"50px"}} />
+                                        <img className="mx-auto" src={getPackageImage(lvl3thirdright[0].PackageName)} style={{width:"50px"}} />
                                          {lvl3thirdright[0].MemName ? (
                                             <a href="#" onClick={() => handleOpen(lvl3thirdright[0])}>View Details</a>
 
@@ -632,7 +536,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                                         <h4 className={styles.myh4}>{lvl3fourthleft[0].MemNo}</h4>
                                         <h4 className={styles.myh4}>{lvl3fourthleft[0].DOJ_DDMMYYYY}</h4>
                                         <h4 className={styles.myh4}>{lvl3fourthleft[0].MemName}</h4>
-                                        <img src={getPackageImage(lvl3fourthleft[0].PackageName)} style={{width:"50px"}} />
+                                        <img className="mx-auto" src={getPackageImage(lvl3fourthleft[0].PackageName)} style={{width:"50px"}} />
                                          {lvl3fourthleft[0].MemName ? (
                                             <a href="#" onClick={() => handleOpen(lvl3fourthleft[0])}>View Details</a>
 
@@ -651,7 +555,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                                         <h4 className={styles.myh4}>{lvl3fourthright[0].MemNo}</h4>
                                         <h4 className={styles.myh4}>{lvl3fourthright[0].DOJ_DDMMYYYY}</h4>
                                         <h4 className={styles.myh4}>{lvl3fourthright[0].MemName}</h4>
-                                        <img src={getPackageImage(lvl3fourthright[0].PackageName)} style={{width:"50px"}} />
+                                        <img className="mx-auto" src={getPackageImage(lvl3fourthright[0].PackageName)} style={{width:"50px"}} />
                                         {lvl3fourthright[0].MemName ? (
                                             <a href="#" onClick={() => handleOpen(lvl3fourthright[0])}>View Details</a>
 
@@ -673,9 +577,468 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
             
             {/* <OrganizationChart value={data} nodeTemplate={nodeTemplate} /> */}
 
+
+
+            <Modal isOpen={isOpen} onClose={handleClose}>
+                <div className="w-[580px] flex">
+                {selectedMember ? (
+
+                    <ul className="ulgeno mb-10">
+                        <li className="liflex">
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">ID</li>
+                            <li className="lipopCont genoval">
+                                {
+                                    selectedMember.MemNo
+                                }
+                            </li>
+                            </ul>
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Paid Date</li>
+                            <li className="lipopCont genoval">{selectedMember.DOJ_DDMMYYYY}</li>
+                            </ul>
+                        </li>
+                        <li className="liflex">
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl w-25">Name</li>
+                            <li className="lipopCont genoval w-75">{selectedMember.MemName}</li>
+                            </ul>
+                            <ul className="ulgeno">
+                            </ul>
+                        </li>
+                        <li className="liflex">
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Sponsor Name</li>
+                            <li className="lipopCont genoval">{selectedMember.SponsorName}</li>
+                            </ul>
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Adjusted ID</li>
+                            <li className="lipopCont genoval">{selectedMember.AdjustedToId}</li>
+                            </ul>
+                        </li>
+                        <li className="liflex">
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Left Count</li>
+                            <li className="lipopCont genoval">{selectedMember.LeftCount} </li>
+                            </ul>
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Right Count</li>
+                            <li className="lipopCont genoval"> {selectedMember.RightCount}</li>
+                            </ul>
+                        </li>
+                        <li className="liflex">
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Confirm Left</li>
+                            <li className="lipopCont genoval"> {selectedMember.ConfirmLeftCount} </li>
+                            </ul>
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Confirm Right</li>
+                            <li className="lipopCont genoval"> {selectedMember.ConfirmRightCount} </li>
+                            </ul>
+                        </li>
+                        <li className="liflex">
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Left SV</li>
+                            <li className="lipopCont genoval"> {selectedMember.LeftBV} </li>
+                            </ul>
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Right SV</li>
+                            <li className="lipopCont genoval"> {selectedMember.RightBV} </li>
+                            </ul>
+                        </li>
+                        <li className="liflex">
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Left CV</li>
+                            <li className="lipopCont genoval"> {selectedMember.LeftPV} </li>
+                            </ul>
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Right CV</li>
+                            <li className="lipopCont genoval"> {selectedMember.RightPV} </li>
+                            </ul>
+                        </li>
+                        <li className="liflex">
+                            <ul className="ulgeno">
+                            <li className="lipopCont genolbl">Award Qualification</li>
+                            <li className="lipopCont genoval">
+                                {
+                                    selectedMember.AwardName ? selectedMember.AwardName : '-'
+                                }
+                            </li>
+                            </ul>
+                        </li>
+                        
+                        </ul>
+                ) : (
+                    <p>Loading...</p>
+                    )}
+                </div>
+            </Modal>
+
+
+{/* New Table Tree */}
+    <table className="binarytable">
+        <tbody>
+            <tr className="text-center">
+                <td className="w-full" style={{width: "100%"}}>
+                    
+                        {level0 ? (
+                            <div className="flex flex-col text-center items-center justify-items-center level0">
+                                <h4 className={styles.myh4}>{level0.MemNo}</h4>
+                                <h4 className={styles.myh4}>{level0.DOJ_DDMMYYYY}</h4>
+                                <h4 className={styles.myh4}>{level0.MemName}</h4>
+                                <img className="mx-auto" src={getPackageImage(level0.PackageName)} style={{width:"50px"}} />
+                                <p>|</p>
+                            </div>
+                            ) : (
+                                <h4 className={styles.myh4}>Loading</h4>
+                            )
+                        }
+                    
+                </td>
+            </tr>
+            <tr cla>
+                <td className="w-full">
+                    <center>
+                        <hr style={{height:"2px", color:"black", width:"100%", border:"1px groove #4169E1"}}></hr>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td className="border-r-2 border-dotted border-0 border-red-600">
+                 {level1Left ? (
+                        <div className="justify-items-center">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{level1Left.MemNo}</h4>
+                            <h4 className={styles.myh4}>{level1Left.DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{level1Left.MemName}</h4>
+                            <img className="mx-auto"  className="mx-auto" src={getPackageImage(level1Left.PackageName)} style={{width:"50px"}} />
+                            <a href="#" onClick={() => handleOpen(level1Left)}>View Details</a>
+                            <p>|</p>
+                        </div>
+                            
+                    ) : (
+                        <h4 className={styles.myh4}>Loading</h4>
+                    )}
+                    </td> 
+                 
+                 
+                    <td className="justify-items-center">
+                    {level1Right ? (
+                         <div className="justify-items-center">
+                                <p>|</p>
+                                <h4 className={styles.myh4}>{level1Right.MemNo}</h4>
+                                <h4 className={styles.myh4}>{level1Right.DOJ_DDMMYYYY}</h4>
+                                <h4 className={styles.myh4}>{level1Right.MemName}</h4>
+                                <img className="mx-auto" className="mx-auto" src={getPackageImage(level1Right.PackageName)} style={{width:"50px"}} />
+                                <a href="#" onClick={() => handleOpen(level1Right)}>View Details</a>
+                                <p>|</p>
+                            </div>
+                                    
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+                        )}
+                        </td> 
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                        <hr style={{height:"2px", color:"black", width:"50%", border:"1px solid #D2691E"}}></hr>
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <hr style={{height:"2px", color:"black", width:"50%", border:"1px double #006400"}}></hr>
+                    </center>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    {lvl2left ? (
+                            <div className="flex flex-col justify-center align-middle content-center justify-items-center level2left-1">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{lvl2left[0].MemNo}</h4>
+                            <h4 className={styles.myh4}>{lvl2left[0].DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{lvl2left[0].MemName}</h4>
+                            <img className="mx-auto" src={getPackageImage(lvl2left[0].PackageName)} style={{width:"50px"}} />
+                            {lvl2left[0] ? (
+                                <a href="#" onClick={() => handleOpen(lvl2left[0])}>View Details</a>
+
+                            ) : ('')}
+
+                            <p>|</p>
+                        </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+
+                        )}
+                </td>
+
+                <td className="border-r-2 border-dotted border-0 border-red-600">
+                    {lvl2right ? (
+                            <div className="flex flex-col justify-items-center items-center level2left-1 h-full justify-center">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{lvl2right[0].MemNo}</h4>
+                            <h4 className={styles.myh4}>{lvl2right[0].DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{lvl2right[0].MemName}</h4>
+                            <img className="mx-auto"  src={getPackageImage(lvl2right[0].PackageName)} style={{width:"50px"}} />
+                            {lvl2right[0].MemName ? (
+                                <a href="#" onClick={() => handleOpen(lvl2right[0])}>View Details</a>
+
+                            ) : ('')}
+
+                            <p>|</p>
+                        </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+
+                        )}
+                </td>
+
+                <td valign="middle">
+                     {lvl2left1 ? (
+                            <div className="flex h-full flex-col basis-1/6 justify-center justify-items-center items-center level2left-2">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{lvl2left1[0].MemNo}</h4>
+                            <h4 className={styles.myh4}>{lvl2left1[0].DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{lvl2left1[0].MemName}</h4>
+                            <img className="mx-auto"  src={getPackageImage(lvl2left1[0].PackageName)} style={{width:"50px"}} />
+                            {lvl2left1[0].MemName ? (
+                                <a href="#" onClick={() => handleOpen(lvl2left1[0])}>View Details</a>
+
+                            ) : ('')}
+
+                            <p>|</p>
+                        </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+
+                        )}
+                </td>
+
+                <td>
+                    {lvl2right1 ? (
+                        <div className="flex flex-col basis-1/6 justify-center justify-items-center items-center level2left-2">
+                        <p>|</p>
+                        <h4 className={styles.myh4}>{lvl2right1[0].MemNo}</h4>
+                        <h4 className={styles.myh4}>{lvl2right1[0].DOJ_DDMMYYYY}</h4>
+                        <h4 className={styles.myh4}>{lvl2right1[0].MemName}</h4>
+                        <img src={getPackageImage(lvl2right1[0].PackageName)} style={{width:"50px"}} />
+                        {lvl2right1[0].MemName ? (
+                            <a href="#" onClick={() => handleOpen(lvl2right1[0])}>View Details</a>
+
+                        ) : ('')}
+
+                        <p>|</p>
+                    </div>
+
+                    ) : (
+                        <h4 className={styles.myh4}>Loading</h4>
+
+                    )}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <center>
+                        <hr style={{height:"2px", color:"black", width:"50%", border:"1px solid #00008B"}}></hr>
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <hr style={{height:"2px", color:"black", width:"50%", border:"1px solid #00008B"}}></hr>
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <hr style={{height:"2px", color:"black", width:"50%", border:"1px solid #00008B"}}></hr>
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <hr style={{height:"2px", color:"black", width:"50%", border:"1px solid #00008B"}}></hr>
+                    </center>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                     {lvl3firstleft ? (
+                            <div className="flex flex-col justify-items-center items-center">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{lvl3firstleft[0].MemNo}</h4>
+                            <h4 className={styles.myh4}>{lvl3firstleft[0].DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{lvl3firstleft[0].MemName}</h4>
+                            <img src={getPackageImage(lvl3firstleft[0].PackageName)} style={{width:"50px"}} />
+                            {lvl3firstleft[0].MemName ? (
+                                <a href="#" onClick={() => handleOpen(lvl3firstleft[0])}>View Details</a>
+
+                            ) : ('')}
+
+                        </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+
+                        )}
+                </td>
+
+                <td>
+                     {lvl3firstright ? (
+                        <div className="flex flex-col justify-center justify-items-center items-center">
+                        <p>|</p>
+                        <h4 className={styles.myh4}>{lvl3firstright[0].MemNo}</h4>
+                        <h4 className={styles.myh4}>{lvl3firstright[0].DOJ_DDMMYYYY}</h4>
+                        <h4 className={styles.myh4}>{lvl3firstright[0].MemName}</h4>
+                        <img className="mx-auto" src={getPackageImage(lvl3firstright[0].PackageName)} style={{width:"50px"}} />
+                            {lvl3firstright[0].MemName ? (
+                            <a href="#" onClick={() => handleOpen(lvl3firstright[0])}>View Details</a>
+
+                        ) : ('')}
+
+                    </div>
+
+                    ) : (
+                        <h4 className={styles.myh4}>Loading</h4>
+
+                    )}
+                </td>
+
+                <td>
+                     {lvl3secondleft ? (
+                            <div className="flex flex-col justify-center justify-items-center items-center">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{lvl3secondleft[0].MemNo}</h4>
+                            <h4 className={styles.myh4}>{lvl3secondleft[0].DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{lvl3secondleft[0].MemName}</h4>
+                            <img className="mx-auto" src={getPackageImage(lvl3secondleft[0].PackageName)} style={{width:"50px"}} />
+                            {lvl3secondleft[0].MemName ? (
+                                <a href="#" onClick={() => handleOpen(lvl3secondleft[0])}>View Details</a>
+
+                            ) : ('')}
+                        </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+
+                        )}
+                               
+                               
+                             
+                </td>
+
+                <td className="border-r-2 border-dotted border-0 border-red-600">
+                {lvl3secondright ? (
+                            <div className="flex flex-col justify-center justify-items-center items-center">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{lvl3secondright[0].MemNo}</h4>
+                            <h4 className={styles.myh4}>{lvl3secondright[0].DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{lvl3secondright[0].MemName}</h4>
+                            <img className="mx-auto" src={getPackageImage(lvl3secondright[0].PackageName)} style={{width:"50px"}} />
+                            {lvl3secondright[0].MemName ? (
+                                <a href="#" onClick={() => handleOpen(lvl3secondright[0])}>View Details</a>
+
+                            ) : ('')}
+                        </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+                        )}
+                </td>
+
+                <td>
+                      {lvl3thirdleft ? (
+                            <div className="flex flex-col justify-center justify-items-center items-center">
+                                <p>|</p>
+                                <h4 className={styles.myh4}>{lvl3thirdleft[0].MemNo}</h4>
+                                <h4 className={styles.myh4}>{lvl3thirdleft[0].DOJ_DDMMYYYY}</h4>
+                                <h4 className={styles.myh4}>{lvl3thirdleft[0].MemName}</h4>
+                                <img className="mx-auto" src={getPackageImage(lvl3thirdleft[0].PackageName)} style={{width:"50px"}} />
+                                {lvl3thirdleft[0].MemName ? (
+                                    <a href="#" onClick={() => handleOpen(lvl3thirdleft[0])}>View Details</a>
+
+                                ) : ('')}
+                            </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+
+                        )}
+                               
+                               
+                        
+                </td>
+                <td>
+                    {lvl3thirdright ? (
+                            <div className="flex flex-col basis-1/2 justify-center justify-items-center items-center">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{lvl3thirdright[0].MemNo}</h4>
+                            <h4 className={styles.myh4}>{lvl3thirdright[0].DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{lvl3thirdright[0].MemName}</h4>
+                            <img className="mx-auto" src={getPackageImage(lvl3thirdright[0].PackageName)} style={{width:"50px"}} />
+                                {lvl3thirdright[0].MemName ? (
+                                <a href="#" onClick={() => handleOpen(lvl3thirdright[0])}>View Details</a>
+
+                            ) : ('')}
+                        </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+                        )}
+                </td>
+
+                <td>
+                     {lvl3fourthleft ? (
+                            <div className="flex flex-col basis-1/2 justify-center justify-items-center items-center">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{lvl3fourthleft[0].MemNo}</h4>
+                            <h4 className={styles.myh4}>{lvl3fourthleft[0].DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{lvl3fourthleft[0].MemName}</h4>
+                            <img className="mx-auto" src={getPackageImage(lvl3fourthleft[0].PackageName)} style={{width:"50px"}} />
+                                {lvl3fourthleft[0].MemName ? (
+                                <a href="#" onClick={() => handleOpen(lvl3fourthleft[0])}>View Details</a>
+
+                            ) : ('')}
+                        </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+
+                        )}    
+                </td>
+                
+                <td>
+                     {lvl3fourthright ? (
+                            <div className="flex flex-col basis-1/2 justify-center justify-items-center items-center">
+                            <p>|</p>
+                            <h4 className={styles.myh4}>{lvl3fourthright[0].MemNo}</h4>
+                            <h4 className={styles.myh4}>{lvl3fourthright[0].DOJ_DDMMYYYY}</h4>
+                            <h4 className={styles.myh4}>{lvl3fourthright[0].MemName}</h4>
+                            <img className="mx-auto" src={getPackageImage(lvl3fourthright[0].PackageName)} style={{width:"50px"}} />
+                            {lvl3fourthright[0].MemName ? (
+                                <a href="#" onClick={() => handleOpen(lvl3fourthright[0])}>View Details</a>
+
+                            ) : ('')}
+                        </div>
+
+                        ) : (
+                            <h4 className={styles.myh4}>Loading</h4>
+                        )}
+                </td>
+                
+            </tr>
+
+        </tbody>
+    </table>
         </div>
 
-
+<div className="grow flex flex-col">
+</div>
         
         </div>
       </div>

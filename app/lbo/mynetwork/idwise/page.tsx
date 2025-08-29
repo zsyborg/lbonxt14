@@ -2,13 +2,39 @@
 import Image from "next/image";
 import Sidebar from "@/app/components/NewSideNav";
 import { useMember } from '@/app/context/MemberContext';
-         
+import * as XLSX from 'xlsx';         
 
 
 
 export default function IDWise() {
     
-    const { member, wallet, loading, iddownline } = useMember();
+    const { iddownline } = useMember();
+
+
+
+const exportToExcel = (tableId:any, filename:any) => {
+  const table = document.getElementById(tableId);
+  const rows = table.querySelectorAll('tr');
+  const data = [];
+
+  rows.forEach((row) => {
+    const rowData = [];
+    row.querySelectorAll('th, td').forEach((cell) => {
+      rowData.push(cell.textContent);
+    });
+    data.push(rowData);
+  });
+
+  const worksheet = XLSX.utils.aoa_to_sheet(data);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "ID Wise Downline");
+  XLSX.writeFile(workbook, filename);
+};
+
+
+const handleExport = () => {
+   exportToExcel("idwisetable", "id_wise_downline.xlsx");
+};
 
 
   return (
@@ -20,9 +46,9 @@ export default function IDWise() {
           </div>
 
           <div className="grow grid-cols-1">
-                <h3 className='fontlight bg-indigo-900 text-white text-2xl py-4 pl-8'>ID-Wise Downline</h3>
+                <h3 className='fontlight bg-indigo-900 text-white text-2xl py-2 pl-8'>ID-Wise Downline</h3>
               <div className="table-container">
-              <table>
+              <table id="idwisetable" className="mytable">
                 <thead className="thead sticky top-0 z-10">
                   <tr>
                     <th className="">Sr. No.</th>
@@ -90,6 +116,12 @@ export default function IDWise() {
                       </td> */}
                 </tbody>
               </table>
+
+              </div>
+              <div className="w-full flex justify-end pr-4">
+                <a href="#" onClick={handleExport}>
+                  <img src="/ui/xls.png" className="w-10" />
+                </a>
               </div>
           </div>
 

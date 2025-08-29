@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
+import { Lato, Raleway, Ubuntu } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import "./responsive.css";
 import { MemberProvider } from './context/MemberContext';
+
+const lato = Lato({
+  variable: "--font-lato",
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+})
+
+
+const ubuntu = Ubuntu({
+  variable: "--font-ubuntu",
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 
 const geistSans = localFont({
@@ -29,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${ubuntu.variable}  ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
           <MemberProvider member={null} wallet={null} downline={[]} iddownline={null} bintree={null}>
              {children}

@@ -930,8 +930,39 @@ background: linear-gradient(to left, #E9E4F0, #b0ebb8); /* W3C, IE 10+/ Edge, Fi
 
 }
 
+/* Forms */
+
+input{
+  height: 30px;
+  background-color: white;
+  border-radius: 1em;
+  padding-left: 8px;
+  border: 1px solid #bebebe;
+}
+
+select{
+    /* border: 1px solid rgb(53, 23, 92); */
+    border-radius: 0px;
+    padding: 10px;
+    /* box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.2); */
+    margin-right: 12px;
+}
 
 /* Binary Tree */
+
+.binarytable td{
+  padding: 0px;
+  width: 50%;
+  border: none;
+}
+table.binarytable{
+  table-layout: fixed;
+  width: 100%;
+}
+
+.binarytable tr{
+  display: flex;
+}
 
 .head:after{
   content: "";
@@ -1025,4 +1056,27 @@ background: linear-gradient(to left, #E9E4F0, #b0ebb8); /* W3C, IE 10+/ Edge, Fi
     padding: 5px;
     font-size: 0.8em;
     margin-bottom: 5px;
+}
+
+
+
+.mydirecttable th(:nth-child:(2)){
+  width: 100px;
+}
+
+.mydirecttable td{
+  height: 5px;
+  padding: 0px;
+}
+
+.mydirecttable tr:nth-child(even){
+  background: rgb(228, 228, 228);
+}
+.mytable td{
+  height: 5px;
+  padding: 0px;
+}
+
+.mytable tr:nth-child(even){
+  background: rgb(228, 228, 228);
 }

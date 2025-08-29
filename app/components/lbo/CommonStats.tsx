@@ -15,7 +15,7 @@ function CommonStats() {
   // const [wallet, setWallet] = useState(0);
 
 
-
+/*
   useEffect(() => {
         const fetchData = async () => {
           try {
@@ -65,7 +65,7 @@ function CommonStats() {
         
         }, []);
 
-    
+    */
 
 
   // Calculate downline counts before return
