@@ -45,7 +45,7 @@ export default function RootLayout({
       <body
         className={`${ubuntu.variable}  ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          <MemberProvider member={null} wallet={null} downline={[]} iddownline={null} bintree={null}>
+          <MemberProvider member={null} wallet={null} downline={[]} iddownline={null} bintree={null} leftCount={null} rightCount={null} binaryTree={null}>
              {children}
           </MemberProvider>
       </body>

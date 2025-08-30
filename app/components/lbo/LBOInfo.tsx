@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 // import { FileInput, HelperText, Label, TextInput, Dropdown, select, Radio, Button, Card } from "flowbite-react";
-import {Button, TextField, Input, Select, MenuItem, InputLabel, FormControl} from '@mui/material';
+import { Button, TextField, Input, Select, MenuItem, InputLabel, FormControl} from '@mui/material';
 
 import axios from 'axios';
 import countries from '@/app/components/data/countries.json';
@@ -59,15 +59,15 @@ function LBOInfo() {
     //     setYear(e.target.value);
     //   };
 
- const handleChangeDay = (event: selectChangeEvent) => {
+ const handleChangeDay = (event: any) => {
     setDay(event.target.value);
   };
 
-  const handleChangeMonth = (event: selectChangeEvent) => {
+  const handleChangeMonth = (event: any) => {
     setMonth(event.target.value);
   };
 
-  const handleChangeYear = (event: selectChangeEvent) => {
+  const handleChangeYear = (event: any) => {
     setYear(event.target.value);
   };
 
@@ -191,7 +191,7 @@ function LBOInfo() {
                                       {/* <InputLabel id="demo-simple-select-helper-label">Day</InputLabel> */}
                                         <select id="demo-simple-select-helper" value={dayed} onChange={handleChangeDay}>
                                             {days.map((m, i) =>(
-                                                <option key={m} value={i + 1} selected={dayed}>{m}</option>
+                                                <option key={m} value={i + 1} >{m}</option>
                                             ))}
                                         </select>
                                     
@@ -199,7 +199,7 @@ function LBOInfo() {
                                       {/* <InputLabel id="month">Month</InputLabel> */}
                                         <select id='monthsel' value={monthdat} onChange={handleChangeMonth}>
                                             {months.map((m, i) =>(
-                                                <option key={m} value={i + 1} selected={month}>{m}</option>
+                                                <option key={m} value={i + 1} >{m}</option>
                                             ))}
                                         </select>
                                     
@@ -207,15 +207,16 @@ function LBOInfo() {
                                       {/* <InputLabel id="year">Year</InputLabel> */}
                                         <select id='yearsel' value={yeardat} onChange={handleChangeYear}>
                                             {years.map((m, i) =>(
-                                                <option key={m} value={m} selected={yeardat}>{m}</option>
+                                                <option key={m} value={m} >{m}</option>
                                             ))}
                                         </select>
                                     
                                 </div>
                                 <br/>
-                                {/* <p className='font-bold'>Email</p> */}
-                                    <TextField className='mb-6' type='email' label='Email' defaultValue={member?.MPD_Email} onChange={handleInputChange}
-                                    InputLabelProps={{ shrink: true }} inputMode='email'/>
+                                <p className='font-bold'>Email</p>
+                                    {/* <TextField className='mb-6' type='email' label='Email' defaultValue={member?.MPD_Email} onChange={handleInputChange} */}
+                                    {/* InputLabelProps={{ shrink: true }} inputMode='email'/> */}
+                                    <input type='email' value={member?.MPD_Email} />
                                     <br/>
                                     <div className='grid grid-cols-2'>
                                 
@@ -228,6 +229,7 @@ function LBOInfo() {
                                     ))}
                                 </select>
                                 <input type='number' className='w-48' value={member?.MPD_Mobile}/>
+                              
                                     </div>
                                     <br/>
                                     <p className='font-bold'>Withdrawal Options</p>
@@ -253,7 +255,7 @@ function LBOInfo() {
                             <p>Joining/Upgrade Amount: E-Pin</p><br/>
                             <br/>
                             <h4 className='font-bold'>Nominee Details</h4>
-                            <input type='text' placeholder='Nominee Name' value={member?.MPD_nomName}/>
+                            <input placeholder='Nominee Name' value={member?.MPD_nomName}/>
                             <br/>
                             <p className='font-bold'>Nominee Date Of Birth</p>
                                 <div className='grid grid-cols-3'>
@@ -269,7 +271,7 @@ function LBOInfo() {
                                     </select>
                                     <select value={nomyear}>
                                         {years.map((m, i) =>(
-                                            <option key={m} value={m} selected={nomyear}>{m}</option>
+                                            <option key={m} value={m}>{m}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -290,11 +292,12 @@ function LBOInfo() {
                                 <option value="Uncle">Uncle</option>
                                 <option value="Aunt">Aunt</option>
                             </select>
-                            <div className='grid grid-cols-2 gap-8'>
-                                <Button variant="contained">Save</Button>
+                            <div className='grid grid-cols-1 gap-8'>
                                 
-                                <button type='submit' disabled={uploading} color='green' className='text-white mt-8'><LuSave className='mr-2'/> {uploading ? 'Saving...' : 'Save'}</button>
-                                <button color='blue' className='text-white mt-8'><FaPrint className='mr-2'/>Preview</button>
+                                {/* <button type='submit' disabled={uploading} color='green' className='text-white mt-8'><LuSave className='mr-2'/> {uploading ? 'Saving...' : 'Save'}</button>
+                                <button color='blue' className='text-white mt-8'><FaPrint className='mr-2'/>Preview</button> */}
+                                <br/>
+                                <Button className='mt-40' variant="contained">Save</Button>
                             </div>
                         </div>
                         <div>

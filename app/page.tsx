@@ -10,81 +10,81 @@ import Header from '@/app/components/Header'
 import Footer from "./components/Footer";
 import axios from "axios";
 
-interface Products{
-name: string,
-price: number
-}
+// interface Products{
+// name: string,
+// price: number
+// }
 
 
-const images = [
-{
-  original: "https://lifeisspeed.in/content/images/thumbs/0001310.jpeg",
-},
-{
-  original: "https://lifeisspeed.in/content/images/thumbs/0001312.jpeg",
-},
-{
-  original: "https://lifeisspeed.in/content/images/thumbs/0001309.jpeg",
-},
-{
-  original: "https://lifeisspeed.in/content/images/thumbs/0001311.jpeg",
-},
-{
-  original: "https://lifeisspeed.in/content/images/thumbs/0001203.png",
-},
-{
-  original: "https://lifeisspeed.in/content/images/thumbs/0001202.png",
-},
-{
-  original: "https://lifeisspeed.in/content/images/thumbs/0001204.png",
-},
-];
+// const images = [
+// {
+//   original: "https://lifeisspeed.in/content/images/thumbs/0001310.jpeg",
+// },
+// {
+//   original: "https://lifeisspeed.in/content/images/thumbs/0001312.jpeg",
+// },
+// {
+//   original: "https://lifeisspeed.in/content/images/thumbs/0001309.jpeg",
+// },
+// {
+//   original: "https://lifeisspeed.in/content/images/thumbs/0001311.jpeg",
+// },
+// {
+//   original: "https://lifeisspeed.in/content/images/thumbs/0001203.png",
+// },
+// {
+//   original: "https://lifeisspeed.in/content/images/thumbs/0001202.png",
+// },
+// {
+//   original: "https://lifeisspeed.in/content/images/thumbs/0001204.png",
+// },
+// ];
 
 
 
-const pros = [
-{
-  "id": 0,
-  "Name": "Regular Half Package",
-  "description": "Description Description Description Description Description Description Description Description Description Description ",
-  "price": 4000,
-  "image": null
-},
-{
-  "id": 1,
-  "Name": "Regular Half Package",
-  "description": "Description Description Description Description Description Description Description Description Description Description ",
-  "price": 4000,
-  "image": null
-},
-{
-  "id": 2,
-  "Name": "Regular Half Package",
-  "description": "Description Description Description Description Description Description Description Description Description Description ",
-  "price": 4000,
-  "image": null
-},
-{
-  "id": 3,
-  "Name": "Regular Half Package",
-  "description": "Description Description Description Description Description Description Description Description Description Description ",
-  "price": 4000,
-  "image": null
-},
-{
-  "id": 4,
-  "Name": "Regular Half Package",
-  "description": "Description Description Description Description Description Description Description Description Description Description ",
-  "price": 4000,
-  "image": null
-}
-]
+// const pros = [
+// {
+//   "id": 0,
+//   "Name": "Regular Half Package",
+//   "description": "Description Description Description Description Description Description Description Description Description Description ",
+//   "price": 4000,
+//   "image": null
+// },
+// {
+//   "id": 1,
+//   "Name": "Regular Half Package",
+//   "description": "Description Description Description Description Description Description Description Description Description Description ",
+//   "price": 4000,
+//   "image": null
+// },
+// {
+//   "id": 2,
+//   "Name": "Regular Half Package",
+//   "description": "Description Description Description Description Description Description Description Description Description Description ",
+//   "price": 4000,
+//   "image": null
+// },
+// {
+//   "id": 3,
+//   "Name": "Regular Half Package",
+//   "description": "Description Description Description Description Description Description Description Description Description Description ",
+//   "price": 4000,
+//   "image": null
+// },
+// {
+//   "id": 4,
+//   "Name": "Regular Half Package",
+//   "description": "Description Description Description Description Description Description Description Description Description Description ",
+//   "price": 4000,
+//   "image": null
+// }
+// ]
 
 export default function Home() {
 
 
-  const [products, setProducts] = useState<any>([]);
-  const [pics, setPics] = useState<any[]>([]);
+  const [products, setProducts] = useState([]);
+  const [pics, setPics] = useState([]);
 
 
   

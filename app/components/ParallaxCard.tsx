@@ -1,6 +1,5 @@
 import React from 'react';
-import Atropos from 'atropos/react';
-import 'atropos/css';
+
 
 
 function ParallaxCard() {

@@ -96,9 +96,9 @@ bintree: any }) => {
 
       try {
         setLoading(true);
-          console.log("Member ID:", memberData[0]);
+          // console.log("Member ID:", memberData[0]);
           const url = "http://localhost:3001/v1/binarytree"
-          const data = {"memno": memberData[0].MPD_MemId, "sessionid": 1234567890}
+          const data = {"memno": member.MPD_MemId, "sessionid": 1234567890}
           axios.post(url, data)
           .then((response) => {
             console.log(response.data);

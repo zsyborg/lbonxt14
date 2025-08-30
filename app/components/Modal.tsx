@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-const Modal = (isOpen:any, onClose:any, children:any) => {
+const Modal = ({isOpen, onClose, children}: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) => {
   if (!isOpen) return null;
 
   return (

@@ -696,7 +696,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                     
                 </td>
             </tr>
-            <tr cla>
+            <tr>
                 <td className="w-full">
                     <center>
                         <hr style={{height:"2px", color:"black", width:"100%", border:"1px groove #4169E1"}}></hr>
@@ -711,7 +711,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                             <h4 className={styles.myh4}>{level1Left.MemNo}</h4>
                             <h4 className={styles.myh4}>{level1Left.DOJ_DDMMYYYY}</h4>
                             <h4 className={styles.myh4}>{level1Left.MemName}</h4>
-                            <img className="mx-auto"  className="mx-auto" src={getPackageImage(level1Left.PackageName)} style={{width:"50px"}} />
+                            <img className="mx-auto" src={getPackageImage(level1Left.PackageName)} style={{width:"50px"}} />
                             <a href="#" onClick={() => handleOpen(level1Left)}>View Details</a>
                             <p>|</p>
                         </div>
@@ -729,7 +729,7 @@ console.log("Test Level 3 First Left:", lvl3firstleft);
                                 <h4 className={styles.myh4}>{level1Right.MemNo}</h4>
                                 <h4 className={styles.myh4}>{level1Right.DOJ_DDMMYYYY}</h4>
                                 <h4 className={styles.myh4}>{level1Right.MemName}</h4>
-                                <img className="mx-auto" className="mx-auto" src={getPackageImage(level1Right.PackageName)} style={{width:"50px"}} />
+                                <img className="mx-auto" src={getPackageImage(level1Right.PackageName)} style={{width:"50px"}} />
                                 <a href="#" onClick={() => handleOpen(level1Right)}>View Details</a>
                                 <p>|</p>
                             </div>

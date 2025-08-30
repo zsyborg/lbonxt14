@@ -933,19 +933,30 @@ background: linear-gradient(to left, #E9E4F0, #b0ebb8); /* W3C, IE 10+/ Edge, Fi
 /* Forms */
 
 input{
-  height: 30px;
-  background-color: rgb(231, 231, 231);
-  /* border-radius: 1em; */
+  height: 36px;
+  background-color: rgb(183, 211, 247);
   padding-left: 8px;
-  /* border: 1px solid #bebebe; */
+
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 select{
     /* border: 1px solid rgb(53, 23, 92); */
     border-radius: 0px;
     padding: 10px;
+    height: 36px;
     /* box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.2); */
     margin-right: 12px;
+    background-color: rgb(183, 211, 247);
 }
 
 /* Binary Tree */
