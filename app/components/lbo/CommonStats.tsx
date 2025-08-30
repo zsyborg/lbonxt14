@@ -3,7 +3,7 @@ import Image from 'next/image';
 import LBOStats from './LBOStats';
 import axios from 'axios';
 import { useMember } from '../../context/MemberContext';
-
+import { FaUser } from 'react-icons/fa6';
 function CommonStats() {
 
   const {member, wallet, loading, leftCount, rightCount, downline} = useMember();
@@ -85,29 +85,36 @@ function CommonStats() {
         {/* <div className="w-full lg:pl-64 md:pl-64 sm:pl-0 xs:pl-0 xs:pr-0 lg:pr-12 md:pr-12 pr-0 sm:pr-0"> */}
         <div className="w-full pr-0 sm:pr-0">
                 
-                <div className="grid grid-cols-2 py-10 pl-8">
-                  <div>
-                    <h3 className='text-2xl'>Welcome {member?.MPD_Name || 'NA'} - {member?.MJD_MemNo || ''}</h3>
+                <div className="grid grid-cols-1 py-10 pl-8">
+                  <div className='bg-indigo-300 p-20 welcomebar text-white font-bold'>
+                    <div className='flex justify-start'>
+                      <FaUser className='fa-5x pr-8 round5 border' style={{fontSize: "55pt"}}/>
+                    <div>
+                      <h3 className='text-2xl'>Welcome {member?.MPD_Name || 'NA'} - {member?.MJD_MemNo || ''}</h3>
+                      <p className='mt-6'>Club Membership</p>
+                    </div>
+
+                    </div>
                   </div>
-                  <div className=''>
+                  {/* <div className=''>
                     <p className="quote font-bold text-right">Quote of the day</p>
                     <p className="quote font-bold text-right">{data.quote}</p>
-                  </div>
+                  </div> */}
                 </div>
                     
-                <h2 className="pl-8 h-fit text-white bg-indigo-900 my-12">My Statistics</h2>
+                <h2 className="pl-8 h-fit text-white pagebar my-12">My Statistics</h2>
                 <div className="grid grid-cols-4 lg:grid-cols-4 md:grid-cols-4 xs:grid-cols-1 w-full pr-12 gap-8 mx-8 justify-center items-center">
-                  <div className="h-40 bg-blue-500 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                  <div className="h-40 bg-blue-500 text-white justify-center items-center flex flex-col shadow-2xl round5">
                       <h3 className="text-2xl text-white text-center">Paid 21-April-2025</h3>
                       <p>My Status</p>
                     </div>
     
-                    <div className="h-40 bg-amber-500 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                    <div className="h-40 bg-amber-500 text-white justify-center items-center flex flex-col round5 shadow-2xl">
                       <h3 className="text-3xl text-white">Approved</h3>
                         <p>KYC Status</p>
                       </div>
     
-                    <div className="h-40 bg-red-500 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                    <div className="h-40 bg-red-500 text-white justify-center items-center flex flex-col round5 shadow-2xl">
                       <h3 className="text-3xl text-white">
                         {totalDownlineCount}
                       </h3>
@@ -128,7 +135,7 @@ function CommonStats() {
                       </div>
                     </div>
     
-                    <div className="h-40 bg-green-700 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                    <div className="h-40 bg-green-700 text-white justify-center items-center flex flex-col round5 shadow-2xl">
                       <h3 className="text-3xl text-white">0.00</h3>
                       <p>Income Received</p>
                     </div>
@@ -137,23 +144,23 @@ function CommonStats() {
                 </div>
     
                 <div className="grid lg:grid-cols-4 md:grid-cols-4 xs:grid-cols-1 w-full pr-12 gap-8 mx-8 justify-center items-center mt-8">
-                  <div className="h-40 bg-blue-500 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                  <div className="h-40 bg-blue-500 text-white justify-center items-center flex flex-col round5 shadow-2xl">
                       <h3 className="text-3xl text-white">-</h3>
                       <p>Big Boss Reward Status</p>
                     </div>
     
-                    <div className="h-40 bg-amber-500 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                    <div className="h-40 bg-amber-500 text-white justify-center items-center flex flex-col round5 shadow-2xl">
                       <h3 className="text-3xl text-white">₹ {wallet.AccountBal}</h3>
                         <p>E-Wallet Balance</p>
                       </div>
     
     
     
-                    <div className="h-40 bg-green-700 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                    <div className="h-40 bg-green-700 text-white justify-center items-center flex flex-col round5 shadow-2xl">
                       <h3 className="text-3xl text-white">0.00</h3>
                       <p>Income Received</p>
                     </div>
-                    <div className="h-40 bg-red-500 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                    <div className="h-40 bg-red-500 text-white justify-center items-center flex flex-col round5 shadow-2xl">
                       <h3 className="text-3xl text-white">8</h3>
                       <p>Multiple E-Wallet Balance</p>
                       <div className="grid grid-cols-2 gap-4 flex flex-col w-full justify-items-center text-center">
@@ -171,13 +178,13 @@ function CommonStats() {
                 </div>
     
     
-                <div className="grid lg:grid-cols-2 md:grid-cols-2 xs:grid-cols-1 xl:grid-cols-2 w-full pr-12 gap-8 mx-8 justify-center items-center mt-8">
-                  <div className="h-40 bg-blue-500 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                <div className="grid lg:grid-cols-4 md:grid-cols-4 xs:grid-cols-1 xl:grid-cols-4 w-full pr-12 gap-8 mx-8 justify-center items-center mt-8">
+                  <div className="h-40 bg-blue-500 text-white justify-center items-center flex flex-col round5 shadow-2xl">
                       <h3 className="text-3xl text-white">21-April-2025</h3>
                       <p>Last Sign-In</p>
                     </div>
     
-                    <div className="h-40 bg-amber-500 text-white justify-center items-center flex flex-col rounded-lg shadow-2xl">
+                    <div className="h-40 bg-amber-500 text-white justify-center items-center flex flex-col round5 shadow-2xl">
                       <h3 className="text-3xl text-white">192.168.0.1</h3>
                         <p>Last Sign-In IP</p>
                       </div>

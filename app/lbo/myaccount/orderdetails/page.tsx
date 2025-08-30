@@ -3,42 +3,39 @@ import Sidebar from "@/app/components/NewSideNav";
 import { useState, useEffect } from "react";
 import { MemberContext, useMember } from "@/app/context/MemberContext";
 import { FaEdit } from "react-icons/fa";
-import Modal from "@/app/components/Modal";
 
 
 export default function Orders() {
-
-const [visible, setVisible] = useState(false)
-const {member} = useMember();
-const [orders, setOrders] = useState([]);
-const [selectedMember, setselectedMember] = useState<any>(null);
-const [isOpen, setIsOpen] = useState(false);
-
+  
+  const [visible, setVisible] = useState(false)
+  const {member} = useMember();
+  const [orders, setOrders] = useState([]);
 
 useEffect(() => {
 
-        if (!member?.MPD_MemId) return; // Wait until member is loaded
-
-            const url = "http://localhost:3001/v1/orders";
-            const data = {memno: member.MPD_MemId};
-
-            fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            })
-            .then(res => res.json())
-            .then(responseData => {
-                // console.log(responseData);
-                setOrders(responseData);
-            })
-            .catch(error => {
-                console.error(error);
-        });
-       
-    }, [member]);
-
-
+  if (!member?.MPD_MemId) return; // Wait until member is loaded
+    
+  
+    const url = "http://localhost:3001/v1/orders";
+    const data = {memno: member.MPD_MemId};
+  
+    fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(responseData => {
+        // console.log(responseData);
+        setOrders(responseData);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+  
+        
+    
+}, [member]);
 
 const dateProcessor = (date: any) => {
   const newdate = new Date(date);
@@ -49,18 +46,6 @@ const dateProcessor = (date: any) => {
   });
 }
 
-    const handleOpen = (user:any) => {
-        setselectedMember(user);
-        setIsOpen(true);
-        document.body.classList.add('modal-open');
-        console.log('handleOpen called');
-    };
-
-    const handleClose = () => {
-        setIsOpen(false);
-        document.body.classList.remove('modal-open');
-        console.log('handleClose called');
-    };
 
   return (
     <>
@@ -78,26 +63,7 @@ const dateProcessor = (date: any) => {
                 <br/>
                 <br/>
 
-                <div className="grid grid-cols-3 gap-8 w-full px-4">
-                  
-                  {orders.map((item:any, index:number) =>(
-                    <>
-                    <div className="border" key={index}>
-                      <h2 className="pagebar text-white p-6 text-left font-normal">Order Number: {item.Id}</h2>
-                      <p>Order Status: {item.OrderStatusInfo}</p>
-                      <p>Order Date: { dateProcessor(item.CreatedOnUtc)}</p>
-                      <p>Order Total: ₹ {item.OrderTotal}</p>
-                      <p>Total CV: {item.TotalPVPoints}</p>
-                      <p>Total SV: {item.TotalBVPoints}</p>
-                      <h2 className="bg-amber-700 text-center text-white p-4"><FaEdit className="inline-block" /> Order Details</h2>
-                    </div>
-                    </>
-                  ))}
-                </div>
-
-                <Modal isOpen={isOpen} onClose={handleClose}>
-
-                </Modal>
+               
               {/* <Card className="w-1/4 ml-4">
               <h5 className="text-2xl font-bold tracking-tight text-blue-900">
                     Order #75

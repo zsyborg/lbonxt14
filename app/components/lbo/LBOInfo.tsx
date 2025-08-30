@@ -168,7 +168,7 @@ function LBOInfo() {
     
     <div className="w-full">
 
-        <h3 className='fontlight bg-indigo-900 text-white text-2xl py-4 pl-8'>Your Personal Details</h3>
+        <h3 className='fontlight text-white text-2xl py-4 pl-8 pagebar'>Your Personal Details</h3>
             <form onSubmit={handleSubmit}>
                 <div className='grid grid-cols-3 gap-8 py-4 pl-8'>
                     <div>
@@ -317,8 +317,8 @@ function LBOInfo() {
 
 
                 
-                <div className='bg-indigo-900 text-white w-full grid grid-cols-2'>
-                    <h3 className='fontlight bg-indigo-900 text-white text-2xl py-4 pl-8'>Manage My Addresses</h3>
+                <div className='pagebar text-white w-full grid grid-cols-2'>
+                    <h3 className='fontlight  text-white text-2xl py-4 pl-8'>Manage My Addresses</h3>
                         {/* <div className='justify-end text-right'>
                         <div className='grid grid-cols-1 justify-end text-right h-full pr-4 items-center content-center relative'>
                             <p>

@@ -58,11 +58,11 @@ const Sidebar = () => {
     <>
       <div className={collapsed ? 'collapsed': 'sidebar'}>
         <div className='sidebarHeader'>
-          {!collapsed && <div><img src="/logo.png" className='w-15 h-15 rounded-full inline' alt='Lifeis Speed Logo'/>
+          {/* {!collapsed && <div><img src="/logo.png" className='w-15 h-15 rounded-full inline' alt='Lifeis Speed Logo'/>
                  <br/> <p className='text-white inline'>Lifeis Speed Pvt. Ltd.</p>
                   </div>
                 //   <span className='logo'>Dashboard</span>
-                  }
+                  } */}
           <button className='toggleBtn' onClick={toggleSidebar}>
             {collapsed ? <FaChevronRight /> : <FaChevronLeft />}
           </button>

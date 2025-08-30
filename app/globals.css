@@ -17,7 +17,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Vend Sans", sans-serif;
 }
 
 @layer utilities {
@@ -26,6 +26,10 @@ body {
   }
 }
 
+.welcomebar{
+  background: url('/table.jpg');
+  background-position: center;
+}
 
 .homemenu li{
   display: inline-flex;
@@ -731,6 +735,17 @@ background-size:100%;
 }
 
 
+.round5{
+  border-radius: 5em;
+}
+
+.pagebar{
+background: #CB356B;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #BD3F32, #CB356B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
 /* New Sidebar */
 .sidebar {
   position: fixed;
@@ -738,7 +753,10 @@ background-size:100%;
   left: 0;
   bottom: 0;
   width: 250px;
-  background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+  background: #CB356B;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #BD3F32, #CB356B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   color: white;
   overflow: hidden;
   transition: width 0.3s ease;
